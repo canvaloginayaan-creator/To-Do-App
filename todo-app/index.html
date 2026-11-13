@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>To-Do List</h1>
+      <button id="themeToggle" class="ghost" type="button" aria-label="Switch between light and dark mode">Dark mode</button>
+    </header>
+
+    <section class="summary" aria-live="polite">
+      <p class="headline"><span id="doneCount">0</span> of <span id="totalCount">0</span> done</p>
+      <div class="bar" role="progressbar" aria-label="Completed tasks" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="barFill"></div>
+      </div>
+      <p class="counts"><span id="pendingCount">0</span> pending, <span id="completedCount">0</span> completed</p>
+    </section>
+
+    <form id="taskForm" class="add" autocomplete="off">
+      <label class="sr" for="taskInput">New task</label>
+      <input id="taskInput" type="text" placeholder="What needs doing?" maxlength="120" required />
+      <label class="sr" for="priorityInput">Priority</label>
+      <select id="priorityInput">
+        <option value="low">Low priority</option>
+        <option value="medium" selected>Medium priority</option>
+        <option value="high">High priority</option>
+      </select>
+      <label class="sr" for="dueInput">Due date</label>
+      <input id="dueInput" type="date" />
+      <button type="submit" class="primary">Add task</button>
+    </form>
+
+    <div class="toolbar">
+      <div class="filters" role="group" aria-label="Filter tasks">
+        <button type="button" class="chip active" data-filter="all">All</button>
+        <button type="button" class="chip" data-filter="pending">Pending</button>
+        <button type="button" class="chip" data-filter="completed">Completed</button>
+      </div>
+      <label class="sr" for="searchInput">Search tasks</label>
+      <input id="searchInput" type="search" placeholder="Search tasks" />
+      <button id="clearDone" type="button" class="ghost">Clear completed</button>
+    </div>
+
+    <ul id="taskList" class="list"></ul>
+    <p id="emptyState" class="empty" hidden></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
